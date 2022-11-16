@@ -4,6 +4,7 @@ require '../Modules/login.php';
 require '../Modules/logout.php';
 require '../Modules/database.php';
 require '../Modules/common.php';
+require '../Modules/fietsen.php';
 
 session_start();
 //var_dump($_SESSION);
@@ -13,7 +14,7 @@ $message="";
 $request = $_SERVER['REQUEST_URI'];
 
 $params = explode("/", $request);
-print_r($request);
+//print_r($request);
 $title = "HealthOne";
 $titleSuffix = "";
 
@@ -30,6 +31,11 @@ switch ($params[1]) {
 
     case 'category':
         include_once "../Templates/home.php";
+        break;
+
+    case 'fietsen':
+        $fietsen = getFietsen();
+        include_once "../Templates/fietsen.php";
         break;
 
     case 'product':
@@ -67,6 +73,8 @@ switch ($params[1]) {
         $titleSuffix = ' | Home';
         include_once "../Templates/home.php";
 }
+
+
 
 
 
