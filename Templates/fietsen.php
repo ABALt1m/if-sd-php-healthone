@@ -1,9 +1,4 @@
-<?php
 
-
-
-
-?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -30,8 +25,9 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
+            <th scope="col">Merk</th>
+            <th scope="col">type</th>
+            <th scope="col">prijs</th>
             <th scope="col">detail</th>
             <th scope="col">update</th>
             <th scope="col">delete</th>
@@ -48,8 +44,9 @@
         echo '<th scope="row">'.$num.'</th>';
         echo "<td>".$fiets['merk']."</td>";
         echo "<td>".$fiets['type']."</td>";
-        echo "<td><a href='detail/".$fiets['id']."'>details</a></td>";
-        echo "<td><a href='detail/".$fiets['id']."'>update</a></td>";
+        echo "<td>".$fiets['prijs']."</td>";
+        echo "<td><a href='details/".$fiets['id']."'>details</a></td>";
+        echo "<td><a href='update/".$fiets['id']."'>update</a></td>";
         echo "<td><a href='detail/".$fiets['id']."'>delete</a></td>";
         echo "</tr>";
         $num++;
@@ -58,6 +55,9 @@
     ?>
         </tbody>
     </table>
+
 </div>
+<div class="container"><a href="insert">Insert</a></div>
+
 </body>
 </html>

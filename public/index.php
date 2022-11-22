@@ -68,6 +68,23 @@ switch ($params[1]) {
     case 'member':
         include_once ('member.php');
         break;
+    case 'insert':
+        include_once "../Templates/insert.php";
+        break;
+    case 'details':
+        include_once "../Templates/details.php";
+        break;
+    case 'update':
+
+        if (isset($_POST['submit'])){
+            $msg = "Done!";
+        }else{
+            $result = getFiets($params[2]);
+        }
+
+        include_once "../Templates/update.php";
+        break;
+
 
     default:
         $titleSuffix = ' | Home';
