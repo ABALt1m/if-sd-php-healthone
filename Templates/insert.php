@@ -1,38 +1,11 @@
-<?php
-try {
 
-    $db=new PDO("mysql:host=localhost;dbname=fietsenmaker","root", "");
-    if (isset($_POST['submit'])){
-        if (!empty($_POST['merk']) && !empty($_POST['type']) && !empty($_POST['prijs'])){
-            $prijs = filter_input(INPUT_POST,'prijs',FILTER_VALIDATE_FLOAT );
-            $merk = filter_input(INPUT_POST,'merk',FILTER_SANITIZE_ADD_SLASHES );
-            $type = filter_input(INPUT_POST,'type',FILTER_SANITIZE_ADD_SLASHES );
-            if ($prijs===false){
-                $melding= "vul een geldige prijs in!";
-            }
-            else{
-                $query=$db->prepare("INSERT INTO fietsen(merk,type,prijs) VALUES(:merk, :type, :prijs)");
-                $query->bindParam("merk", $merk);
-                $query->bindParam("type", $type);
-                $query->bindParam("prijs", $prijs);
-                if ($query->execute()){
-
-                    header('Location: http://healthone.localhost/fietsen');
-                }else{
-                    $melding="er is een fout opgetreden";
-                }
-                echo "<br>";
-            }
-        }else{
-            $melding="niet alle velden zijn ingevuld";
-        }
-    }
-} catch (PDOException $e){
-    die("ERROR!:".$e->getMessage());
-}
-?>
 <!doctype html>
 <html lang="en">
+<?php
+
+include_once ('defaults/head.php')
+
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -50,6 +23,13 @@ try {
     }
 </style>
 <body>
+<div class="container">
+<?php
+
+include_once('defaults/header.php');
+include_once('defaults/menu.php');
+include_once('defaults/pictures.php');
+?>
 <h2>Toevoegen fietsen </h2>
 <form method="post">
     <label for="merk">Merk:</label>
@@ -65,7 +45,9 @@ try {
     <input type="submit" name="submit" value="submit">
 </form>
 <?php
-if (isset($melding))echo $melding
+global $msg;
+if (isset($msg))echo $msg;
 ?>
+</div>
 </body>
 </html>

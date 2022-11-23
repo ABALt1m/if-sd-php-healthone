@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/contact">contact</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/fietsen">fietsen</a>
+                </li>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">

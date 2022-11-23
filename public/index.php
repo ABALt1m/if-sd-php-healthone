@@ -34,6 +34,7 @@ switch ($params[1]) {
         break;
 
     case 'fietsen':
+        $titleSuffix = ' | Fietsen';
         $fietsen = getFietsen();
         include_once "../Templates/fietsen.php";
         break;
@@ -69,6 +70,22 @@ switch ($params[1]) {
         include_once ('member.php');
         break;
     case 'insert':
+        $titleSuffix = ' | Insert';
+        if (isset($_POST['submit'])) {
+            if (!empty($_POST['merk']) && !empty($_POST['type']) && !empty($_POST['prijs'])) {
+                $merk = filter_input(INPUT_POST, "merk", FILTER_SANITIZE_STRING);
+                $type = filter_input(INPUT_POST, "type", FILTER_SANITIZE_STRING);
+                $prijs = filter_input(INPUT_POST, "prijs", FILTER_VALIDATE_FLOAT);
+                if ($prijs==false){
+                    $msg = "Vul een getal in!";
+                }else{
+                    insertFietsen();
+                    header('Location:  http://healthone.localhost/fietsen');
+                }
+            }else{
+                $msg = "vul alles in";
+            }
+        }
         include_once "../Templates/insert.php";
         break;
     case 'details':
@@ -77,14 +94,21 @@ switch ($params[1]) {
     case 'update':
 
         if (isset($_POST['submit'])){
-            $msg = "Done!";
+            if (!empty($_POST['merk'])&&!empty($_POST['type'])&&!empty($_POST['prijs'])){
+                    $merk = filter_input(INPUT_POST, "merk", FILTER_SANITIZE_STRING);
+                    $type= filter_input(INPUT_POST, "type", FILTER_SANITIZE_STRING);
+                    $prijs= filter_input(INPUT_POST, "prijs", FILTER_VALIDATE_FLOAT);
+                    $result = updateFietsen($params[2]);
+                header('Location:  http://healthone.localhost/fietsen');
+            }else{
+                $msg = 'vul alles in!';
+            }
         }else{
             $result = getFiets($params[2]);
         }
-
+        $titleSuffix = ' | update';
         include_once "../Templates/update.php";
         break;
-
 
     default:
         $titleSuffix = ' | Home';

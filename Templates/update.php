@@ -28,6 +28,7 @@ include_once ('defaults/head.php')
 include_once('defaults/header.php');
 include_once('defaults/menu.php');
 include_once('defaults/pictures.php');
+global $result;
 ?>
 
 <h2>Toevoegen fietsen </h2>
@@ -45,6 +46,7 @@ include_once('defaults/pictures.php');
     <input type="submit" name="submit" value="submit">
 </form>
 <?php
+global $msg;
 if (isset($msg))echo $msg;
 ?>
 </div>

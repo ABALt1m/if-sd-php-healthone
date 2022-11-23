@@ -1,6 +1,9 @@
 
 <!doctype html>
 <html lang="en">
+<?php
+include_once('defaults/head.php');
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -16,7 +19,6 @@
     <?php
 
     include_once('defaults/header.php');
-    include_once('defaults/head.php');
     include_once('defaults/menu.php');
     include_once('defaults/pictures.php');
     ?>
